@@ -19,7 +19,7 @@ alias gx='git branch --merged | grep -v "master" | grep -v "release" | xargs -n 
 
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls -Gahl --color=auto'
+    alias ls='ls -G --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
