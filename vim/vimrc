@@ -1,0 +1,164 @@
+call pathogen#infect()
+call pathogen#helptags()
+
+filetype plugin indent on         "Turn on file type detection
+
+set nocompatible                  "Turn off vi compatibility
+set modelines=0                   "What does this do?
+
+" Status Bar
+set laststatus=2                  "Enables the status line at the bottom of Vim
+set statusline=%{GitBranchInfoString()}
+set statusline+=\ %t%m
+set statusline+=%=
+set statusline+=%c,
+set statusline+=%l/%L
+let g:git_branch_status_head_current=1
+let g:git_branch_status_text=""
+if version >= 700
+    highlight statusLine cterm=bold ctermfg=black ctermbg=gray guibg=black guifg=gray
+    au InsertLeave * highlight StatusLine cterm=bold ctermfg=black ctermbg=gray guifg=black guibg=gray
+    au InsertEnter * highlight StatusLine cterm=bold ctermfg=black ctermbg=blue guifg=black guibg=cyan
+endif
+
+set tabstop=2                     "Global tab width
+set shiftwidth=2                  "Shift width
+set softtabstop=2
+set expandtab                     "Use spaces instead of tabs
+set autoindent                    "Match previous indent level
+
+set title                         "Set terminal title
+set encoding=utf-8
+set scrolloff=3                   "Show 3 lines of context around cursor
+set showmode                      "Display the mode we're in
+set showcmd                       "Display incomplete commands
+set hidden                        "Handle multiple buffers better
+set wildmenu                      "Enhanced command line completion
+set wildmode=list:longest         "Complete files like a shell
+set visualbell                    "No beeping
+set ttyfast                       "Improves redrawing
+set backspace=indent,eol,start    "Intuitive backspacing
+
+set number                        "Show line numbers
+set ruler                         "Show cursor position
+set cursorline                    "Draw line under cursor
+
+set ignorecase                    "Case-insensitive searching
+set smartcase                     "But case-sensitive if using cap letter
+set gdefault                      "Default to /g suffix on searches
+set incsearch                     "Highlight matches as you type
+set hlsearch                      "Highlight matches
+set showmatch                     "Briefly jump cursor to matching brace
+
+set wrap                          "Turn on line wrapping
+"set colorcolumn=81                "Show column marker
+
+set nobackup                      "Don't make file backups
+set nowritebackup                 "Ditto
+set directory=$HOME/.vim-tmp/,~/tmp,/var/tmp,/tmp
+set backupdir=$HOME/.vim-tmp/,~/tmp,/var/tmp,/tmp
+
+" Display extra whitespace
+"set list
+" set listchars=tab:»·,trail:·
+"set listchars=tab: ,trail:·
+
+syntax enable                     "Turn on syntax highlighting
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
+
+hi Search guibg=Yellow guifg=Black ctermbg=Yellow ctermfg=Black
+hi PMenuSel ctermbg=Yellow ctermfg=Black
+
+" Load matchit.vim, but only if the we haven't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
+"Function keys
+" Toggle line numbers
+nnoremap <F2> :set nonumber!<CR>
+nnoremap <F4> :GitGutterToggle<CR>
+
+"Make gitgutter aggressive
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
+
+"Fix vim regex handling
+vnoremap / /\v
+
+"Enter normal mode with jj
+inoremap jj <Esc>
+inoremap jk <Esc>
+
+"Use tab for matching bracket pairs
+nnoremap <tab> %
+vnoremap <tab> %
+
+"Navigate splits w/ ctrl movement
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+if bufwinnr(1)
+  map + <C-W>+
+  map - <C-W>-
+endif
+
+"Make semicolon equiv of colon in normal mode
+"nnoremap ; :
+
+"Change leader key
+let mapleader=","
+
+" Toggle paste mode
+set pastetoggle=<leader>z
+
+"Leader-Space to clear search highlighting
+nnoremap <leader><space> :noh<CR>
+
+"Reselect text just pasted
+nnoremap <leader>v V`]
+
+" Clone paragraph
+noremap cp yap<S-}>p
+
+" Quit file
+noremap <leader>q :q<cr>
+
+" Save file
+nnoremap <leader>s :w<cr>
+inoremap <leader>s <C-c>:w<cr>
+
+"Toggle NERDTree
+nnoremap <leader>n :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
+
+" Map CtrlP to leader-f
+"nnoremap <leader>f :CtrlP<CR>
+
+"Strip all trailing whitespace
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+"Horizontal split
+nnoremap <leader>w <C-w>s<C-w>k
+"
+"Vertical split
+nnoremap <leader>e <C-w>v<C-w>l
+
+"Ack
+nnoremap <leader>a :Ack!<space>
+let g:ackprg="ack -H --nocolor --nogroup --column"
+"O   to open and close quickfix window
+"h   to open in horizontal split
+"v   to open in vertical split
+"q   to close quickfix window
+
+"NerdCommenter
+"<leader>c<space>  toggle comment
+"
+"Blockle
+"<leader>b  toggle between { } and do end
+
+"let g:CommandTAcceptSelectionSplitMap='<C-CR>'
+
