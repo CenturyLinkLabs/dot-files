@@ -9,6 +9,12 @@ ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/vim $HOME/.vim
 ln -s $(pwd)/vim/vimrc $HOME/.vimrc
 
+if [ -d $HOME/.ssh ]; then
+  ln -s $(pwd)/ssh/rc $HOME/.ssh/rc
+else
+  ln -s $(pwd)/ssh $HOME/.ssh
+fi
+
 if [ -f $HOME/.bashrc ]; then
   mv $HOME/.bashrc $HOME/.bashrc_original
 fi
