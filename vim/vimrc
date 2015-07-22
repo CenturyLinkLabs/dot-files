@@ -53,6 +53,9 @@ set showmatch                     "Briefly jump cursor to matching brace
 set wrap                          "Turn on line wrapping
 "set colorcolumn=81                "Show column marker
 
+set splitbelow                    "More natural feeling split opening
+set splitright                    "More natural feeling split opening
+
 set nobackup                      "Don't make file backups
 set nowritebackup                 "Ditto
 set directory=$HOME/.vim-tmp/,~/tmp,/var/tmp,/tmp
