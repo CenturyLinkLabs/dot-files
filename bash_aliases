@@ -16,3 +16,11 @@ alias ga='git add'
 alias gb='git branch'
 alias gbn='git checkout -b'
 alias gx='git branch --merged | grep -v "master" | grep -v "release" | xargs -n 1 git branch -d'
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls -Gahl --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
