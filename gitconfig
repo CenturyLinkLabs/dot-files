@@ -1,0 +1,15 @@
+[core]
+  editor = vi
+[alias]
+  pl = pull
+  ps = push
+  m = commit -v
+  s = status
+  c = checkout
+  d = diff --color
+  dc = diff --cached --color
+  a = add
+  b = branch
+  up = "!git remote update -p; git merge --ff-only @{u}"
+[push]
+  default = current
