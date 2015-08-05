@@ -6,7 +6,6 @@ ln -s $(pwd)/editrc $HOME/.editrc
 ln -s $(pwd)/gemrc $HOME/.gemrc
 ln -s $(pwd)/gitconfig $HOME/.gitconfig
 ln -s $(pwd)/inputrc $HOME/.inputrc
-ln -s $(pwd)/inputrc $HOME/.inputrc
 ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/vim $HOME/.vim
 ln -s $(pwd)/vim/vimrc $HOME/.vimrc
